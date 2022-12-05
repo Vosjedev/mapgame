@@ -4,9 +4,9 @@
 # and, you wont have the right stuff to get to the end...
 
 profile=3
-map=map.1.6
-inv=' wood_pickaxe stone_pickaxe stone stone stone '
-holding='wood_pickaxe'
-coins=20
+map=map.1.1
+inv=' wood_pickaxe '
+holding=''
+coins=0
 stone_mined=0
 iron_mined=0
