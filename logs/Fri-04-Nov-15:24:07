@@ -1,0 +1,44 @@
+ititializing logging
+[settings]: successfull
+[game.coin-system]: coin system
+[game]: setting functions
+[game]: inventory manager
+[game]: setting menu's
+[game]: setting profile saving/loading functions
+[game]: setting key listener
+[game]: loading maps
+[maps]: setting map 1
+[maps]: done setting map 1
+[maps]: loading map 2
+[maps]: done loading map 2
+[game]: main loop:
+[game]: ===============
+[menu]: drawing main menu
+[menu]: drawing load menu
+[profile]: loading profile 1
+[maps]: drawing map 1.8
+[maps]: drawing map 1.8
+[menu]: drawing pauze menu
+[save/load]: saving profile 1...
+[save/load]: done
+[menu]: drawing main menu
+[menu]: drawing load menu
+[profile]: loading profile 2
+[maps]: drawing map 1.8
+[menu]: drawing pauze menu
+[menu]: drawing pauze menu
+[save/load]: saving profile 2...
+[save/load]: done
+[menu]: drawing main menu
+[menu]: drawing load menu
+[profile]: loading profile 3
+[maps]: drawing map 1.5
+[maps]: drawing map 1.5
+[maps]: drawing map 1.6
+[menu]: drawing pauze menu
+[save/load]: saving profile 3...
+[save/load]: done
+[menu]: drawing main menu
+[game]: ===============
+[game]: closing...
+[game]: trying to exit

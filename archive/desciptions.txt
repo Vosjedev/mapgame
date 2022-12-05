@@ -1,0 +1,1 @@
+1.	added map 2, added iron, made trades check for materials mined, map 2 in tp menu, ready for iron tools and more materials.
