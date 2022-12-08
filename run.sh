@@ -7,16 +7,17 @@ LINES=$(tput lines)
 
 if [ "$COLUMNS" -lt 40 ]
 then if [ "$COLUMNS" -gt 21 ]
-then
+    then
 echo "
  __   __   __   __ __
 /  \ /  \ |__) (_  \/
 \__/ \__/ |    __) ()
 your screen is too small! make sure it is larger than 40 columns by 26 lines"
-else
+    else
 echo "OOPS!
 your screen is too small! make sure it is larger than 40 columns."
-fi
+    fi
+    exit 1
 fi
 
 if [ "$LINES" -lt 26 ]
@@ -26,7 +27,9 @@ echo "
 /  \ /  \ |__) (_  \/
 \__/ \__/ |    __) ()
 your screen is too small! make sure it is larger than 40 columns by 26 lines"
+exit 1
 fi
+
 
 # fill the screen
 lines=0
@@ -58,6 +61,12 @@ function logs.clean {
     next=menu.main
 }
 log "game.log" "logging started"
+
+[ -f settings.txt ] || {
+    log setup "no settings file found, running ./install.sh"
+    chmod +x install.sh
+    ./install.sh
+}
 
 log settings "loading settings"
 source settings.txt && log settings "successfull"
@@ -103,14 +112,14 @@ function close {
 function title {
     if [ "$1" == ani ]
     then
-    fx.typeq "               __    ___  ___  ___ ___"
-    fx.typeq " /\  /\   /\  |__)    |  |___ (__   | "
-    fx.typeq "/  \/  \ /--\ |       |  |___ ___)  |"
+    fx.typeq "               __     ___                 ___"
+    fx.typeq " /\  /\   /\  |__)   /  __  /\   /\  /\  |___"
+    fx.typeq "/  \/  \ /--\ |      \___/ /--\ /  \/  \ |___"
     [ "$no_animations" == false ] && sleep 0.2
     else
-    echo "               __    ___  ___  ___ ___"
-    echo " /\  /\   /\  |__)    |  |___ (__   | "
-    echo "/  \/  \ /--\ |       |  |___ ___)  |"
+    echo "               __     ___                 ___"
+    echo " /\  /\   /\  |__)   /  __  /\   /\  /\  |___"
+    echo "/  \/  \ /--\ |      \___/ /--\ /  \/  \ |___"
     fi
 }
 

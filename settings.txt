@@ -1,4 +1,0 @@
-disable_logging=false
-watch_log=false
-no_animations=false
-terminal='gnome-terminal --window --'
