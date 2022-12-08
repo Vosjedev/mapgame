@@ -18,14 +18,16 @@ terminal='echo \"set a terminal in the settings to watch the log.\"'
 echo "done"
 
 echo "making game profiles..."
+mkdir profiles
 cd profiles
-profile=1
-while (( $profile -le 3 ))
+((profile=1))
+while [[ $profile -le 3 ]]
 do
     if [ -f $profile.save ]
     then
         echo "profile $profile already here..."
         source $profile.save
+        rm $profile.save
     else
         map=map.1.1
         inv=' wood_pickaxe '
@@ -35,10 +37,7 @@ do
         iron_mined=0
     fi
 
-    rm $data/profiles/$profile.save
-    [ "$no_animations" == false ] && sleep 0.1
-    touch $data/profiles/$profile.save
-    [ "$no_animations" == false ] && sleep 0.1
+    touch $profile.save
     echo -n "
     # this is your gamesave.
     # please don't modify it, that's called cheating.
@@ -51,7 +50,7 @@ do
     coins=$coins
     stone_mined=$stone_mined
     iron_mined=$iron_mined
-    " >> profiles/$profile.save
+    " >> $profile.save
     ((profile++))
 done
 cd ..
@@ -62,4 +61,4 @@ mkdir logs
 echo "done"
 
 read -p "press enter to enter the game." -s
-exit 0
+clear
