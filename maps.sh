@@ -267,7 +267,9 @@ function map.2.1 {
    [____/    __/
             |_____*
 
-_______________________________________"
+_______________________________________
+teleport station ! network is 1.
+use [t] to open the teleport menu."
 keypad 2 1
 
 }
