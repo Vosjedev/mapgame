@@ -22,43 +22,43 @@ echo "done"
 echo "making game profiles..."
 mkdir profiles
 cd profiles
-((profile=1))
-while [[ $profile -le 3 ]]
+var.math profile profile=1
+while [[ $(var.get profile) -le 3 ]]
 do
-    if [ -f $profile.save ]
+    if [ -f $(var.get profile).save ]
     then
-        echo "profile $profile already here..."
-    [ "$no_animations" == false ] && sleep 0.1
-        source $profile.save
-        rm $profile.save
+        echo "profile $(var.get profile) already here..."
+    [ "$(var.get no_animations)" == false ] && sleep 0.1
+        source $(var.get profile).save
+        rm $(var.get profile).save
     else
-        map=map.1.1
-        inv=' wood_pickaxe '
-        holding=''
-        coins=0
-        gen_1_5_ticks=601
-        gen_2_6_ticks=1201
-        gen_1_5_left_stone=3
-        gen_2_6_left_iron=6
+        var.set map map.1.1
+        var.set inv ' wood_pickaxe '
+        var.set holding ''
+        var.set coins 0
+        var.set gen_1_5_ticks 601
+        var.set gen_2_6_ticks 1201
+        var.set gen_1_5_left_stone 3
+        var.set gen_2_6_left_iron 6
     fi
-    touch $profile.save
+    touch $(var.get profile).save
     echo -n "
 # this is your gamesave.
 # please don't modify it, that's called cheating.
 # and, you wont have the right stuff to get to the end...
 
-profile=$profile
-map=$map
-inv='$inv'
-holding='$holding'
-coins=$coins
-achivements=' $achivements '
-((gen_1_5_ticks=$gen_1_5_ticks))
-gen_1_5_left_stone=$gen_1_5_left_stone
-((gen_2_6_ticks=$gen_2_6_ticks))
-gen_2_6_left_iron=$gen_2_6_left_iron
-" >> $profile.save
-    ((profile++))
+var.set profile $(var.get profile)
+var.set map $map
+var.set inv '$(var.get inv)'
+var.set holding '$(var.get holding)'
+var.set coins $(var.get coins)
+var.set achivements' $(var.get achivements) '
+var.set gen_1_5_ticks $(var.get gen_1_5_ticks)
+var.set gen_1_5_left_stone $(var.get gen_1_5_left_stone)
+var.set gen_2_6_ticks $(var.get gen_2_6_ticks)
+var.set gen_2_6_left_iron $(var.get gen_2_6_left_iron)
+" >> $(var.get profile).save
+    var.math profile profile++
 done
 cd ..
 echo "done"
