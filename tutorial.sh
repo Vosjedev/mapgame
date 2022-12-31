@@ -2,13 +2,15 @@
 
 startdt="$1"
 
+. libs/lib_var.sh
+
 function log {
     echo "[$1]: $2" >> "logs/tutorial"
 }
 
 function wrong {
     echo oops! wrong action! lets try again.
-    next=menu.$1
+    var.set next menu.$1
 }
 
 
@@ -21,7 +23,7 @@ echo "i am going to learn you navigate trough this game."
 sleep 0.5
 echo "let's first open up our profile's menu."
 read -p "(press [enter] to continue)" -s
-next=menu.main
+var.set next menu.main
 }
 
 function title {
@@ -63,9 +65,9 @@ function menu.pauze {
     sleep 0.1
     read -p "   > " -n 1 in
     if [ "$in" == 1 ]
-    then next=tuto.map.4.2
+    then var.set next tuto.map.4.2
     elif [ "$in" == q ]
-    then next=menu.save
+    then var.set next menu.save
     fi
 }
 
@@ -83,7 +85,7 @@ function menu.save {
     sleep 0.1
     read -p "   > " -n 1 in
     if [ "$in" == q ]
-    then next="menu.main.2"
+    then var.set next "menu.main.2"
     ani=''
     fi
 }
@@ -106,9 +108,9 @@ function menu.main {
     echo "[task] open up the save menu. (hint: use [1])"
     read -p "   > " -n 1 in
     if [ "$in" == 1 ]
-    then next=menu.load
+    then var.set next menu.load
     elif [ "$in" == q ]
-    then next="menu.confirmclose"
+    then var.set next "menu.confirmclose"
     fi
 }
 
@@ -119,8 +121,8 @@ function menu.confirmclose {
     "
     read -p " [y/n] > " in
     if [ "$in" == y ]
-    then next=exit
-    else next=menu.main
+    then var.set next exit
+    else var.set next menu.main
     fi
 
 }
@@ -139,9 +141,9 @@ function menu.main.2 {
     echo "[task] close the game using the menu"
     read -p "   > " -n 1 in
     if [ "$in" == 1 ]
-    then next=menu.load
+    then var.set next menu.load
     elif [ "$in" == q ]
-    then next="exit"
+    then var.set next "exit"
     fi
 }
 
@@ -160,9 +162,9 @@ function menu.load {
     sleep 0.1
     read -p "   > " -n 1 in
     if [ "$in" == 1 ]
-    then next=tuto.map.1
+    then var.set next tuto.map.1
     elif [ "$in" == q ]
-    then next="wrong load"
+    then var.set next "wrong load"
     ani=''
     fi
 }
@@ -185,14 +187,14 @@ function menu.teleport {
         [ "$1" == f ] && echo "[task] teleport to 5"
         read -p " > " -n 1 in
         if [ "$in" == '' ]
-        then next=$map
+        then var.set next $map
         elif [ "$in" == 4 ]
-        then next=tuto.map.4.2
+        then var.set next tuto.map.4.2
         log teleport "sending to map tuto.map.4"
-        [ "$1" == f ] && next=tuto.map.4
+        [ "$1" == f ] && var.set next tuto.map.4
         teleport 1
         elif [ "$in" == 5 ]
-        then next=tuto.map.5
+        then var.set next tuto.map.5
         log teleport "sending to map tuto.map.5"
         teleport 1
         log menu "close"
@@ -276,18 +278,18 @@ function kp.map.1 {
     map.1
     read -p " > " -n 1 in
     if [ "$in" == "2" ]
-    then next=kp.map.2
+    then var.set next kp.map.2
     fi
 }
 function kp.map.2 {
     map.2
     read -p " > " -n 1 in
     if [ "$in" == 1 ]
-    then next=kp.map.1
+    then var.set next kp.map.1
     elif [ "$in" == 3 ]
-    then next=kp.map.3
+    then var.set next kp.map.3
     elif [ "$in" == 4 ]
-    then next=tuto.map.4
+    then var.set next tuto.map.4
     fi
 }
 function kp.map.2.2 {
@@ -296,29 +298,29 @@ function kp.map.2.2 {
     sleep 0.1
     echo "lets get you back"
     read -p "press any key"
-    next=tuto.map.4.2
+    var.set next tuto.map.4.2
 }
 function kp.map.3 {
     map.3
     read -p " > " -n 1 in
     if [ "$in" == "2" ]
-    then next=kp.map.2
+    then var.set next kp.map.2
     fi
 }
 function kp.map.4 {
     map.4
     read -p " > " -n 1 in
     if [ "$in" == "2" ]
-    then next=kp.map.2
+    then var.set next kp.map.2
     elif [ "$in" == "t" ]
-    then next="menu.teleport f"
+    then var.set next "menu.teleport f"
     fi
 }
 function kp.map.6 {
     map.6
     read -p " > " -n 1 in
     if [ "$in" == "5" ]
-    then next=tuto.map.5
+    then var.set next tuto.map.5
     fi
 }
 
@@ -334,7 +336,7 @@ function tuto.map.1 {
     echo "[task] travel to (2) using the number keys"
     read -p " > " -n 1 in
     if [ "$in" == 2 ]
-    then next=tuto.map.2
+    then var.set next tuto.map.2
     fi
 }
 function tuto.map.2 {
@@ -346,11 +348,11 @@ function tuto.map.2 {
     echo "[task] travel the map"
     read -p " > " -n 1 in
     if [ "$in" == 1 ]
-    then next=kp.map.1
+    then var.set next kp.map.1
     elif [ "$in" == 3 ]
-    then next=kp.map.3
+    then var.set next kp.map.3
     elif [ "$in" == 4 ]
-    then next=tuto.map.4
+    then var.set next tuto.map.4
     fi
 }
 function tuto.map.4 {
@@ -362,9 +364,9 @@ function tuto.map.4 {
     echo "[task] open the teleportation gui using [t]"
     read -p " > " -n 1 in
     if [ "$in" == t ]
-    then next="menu.teleport f"
+    then var.set next "menu.teleport f"
     elif [ "$in" == "2" ]
-    then next=kp.map.2
+    then var.set next kp.map.2
     fi
 }
 function tuto.map.4.2 {
@@ -374,11 +376,11 @@ function tuto.map.4.2 {
     echo "[task] open the pauze menu using [q]"
     read -p " > " -n 1 in
     if [ "$in" == t ]
-    then next=menu.teleport
+    then var.set next menu.teleport
     elif [ "$in" == "2" ]
-    then next=kp.map.2.2
+    then var.set next kp.map.2.2
     elif [ "$in" == q ]
-    then next=menu.pauze
+    then var.set next menu.pauze
     fi
 }
 function tuto.map.5 {
@@ -390,14 +392,14 @@ function tuto.map.5 {
     echo "[task] teleport back"
     read -p " > " -n 1 in
     if [ "$in" == t ]
-    then next=menu.teleport
+    then var.set next menu.teleport
     elif [ "$in" == "6" ]
-    then next=kp.map.6
+    then var.set next kp.map.6
     fi
 }
 
-next="tuto.1"
+var.set next "tuto.1"
 while true ; do
-$next
+$(var.get next)
 clear
 done
