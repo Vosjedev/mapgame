@@ -7,7 +7,7 @@ function varsys.split {
 }
 function varsys.check {
     case $1 in
-        VAR | VARFILE | VARSYS ) echo "var.set: error: name '$1' not allowed."; return 1
+        VAR | VARFILE | VARSYS ) log vars`` "var.set: error: name '$1' not allowed."; return 1
     esac
 }
 
@@ -24,15 +24,15 @@ function var.init {
 function var.set {
     varsys.split
     [[ "$1" == '' ]] && return 2
-    varsys.check || return 1
+    varsys.check "$1" || return 1
     eval "$1=$(var.get \"$1\")"
     eval "echo \"$1=$2\"" >> "$VARFILE"
 }
 
 function var.math {
     [[ "$1" == '' ]] && return 2
-    varsys.check || return 1
-    eval "$1=$(var.get \"$1\")"
+    varsys.check "$1" || return 1
+    eval "$1=\"$(var.get "$1")\""
     eval "(($2))"
     eval "echo \"(($1=\$$1))\"" >> "$VARFILE"
 }
