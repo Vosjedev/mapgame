@@ -25,10 +25,10 @@ cd profiles
 var.math profile profile=1
 while [[ $(var.get profile) -le 3 ]]
 do
-    if [ -f $(var.get profile).save ]
+    if [[ -f $(var.get profile).save ]]
     then
         echo "profile $(var.get profile) already here..."
-    [ "$(var.get no_animations)" == false ] && sleep 0.1
+    [[ "$(var.get no_animations)" == false ]] && sleep 0.1
         source $(var.get profile).save
         rm $(var.get profile).save
     else

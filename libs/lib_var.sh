@@ -26,7 +26,7 @@ function var.set {
     [[ "$1" == '' ]] && return 2
     varsys.check "$1" || return 1
     eval "$1=$(var.get \"$1\")"
-    eval "echo \"$1=$2\"" >> "$VARFILE"
+    eval "echo \"$1='$2'\"" >> "$VARFILE"
 }
 
 function var.math {
@@ -39,6 +39,7 @@ function var.math {
 
 function var.get {
     varsys.split
+    # log "VARFILE='$VARFILE'"
     . "$VARFILE"
     eval "echo \"\$$1\""
 }
@@ -51,7 +52,7 @@ function var.flush {
     while read line
     do IFS='=' read VAR tmp <<< $line
         [[ "$(cat "$VARFILE")" == *"$VAR="* ]] || {
-            eval "echo \"$VAR=\$$VAR\"" >> "$VARFILE"
+            eval "echo \"$VAR='\$$VAR'\"" >> "$VARFILE"
         }
     done < "$VARFILE.tmp"
     rm "$VARFILE.tmp"
