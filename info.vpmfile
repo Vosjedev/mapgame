@@ -1,0 +1,8 @@
+type    = program
+name    = mapgame
+id      = mapgame
+url     = https://github.com/vosjedev/mapgame
+format  = git
+install = ./install.sh
+info    = a game written in bash
+readme  = README.md
