@@ -7,6 +7,7 @@ echo -e "running git pull...\n > git pull"
 git pull
 echo -e "\> git pull\ndone."
 
+source libs/lib_var.sh
 
 echo "making settings.txt..."
 echo "disable_logging=false
