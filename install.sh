@@ -8,6 +8,7 @@ git pull
 echo -e "\> git pull\ndone."
 
 source libs/lib_var.sh
+var.init
 
 echo "making settings.txt..."
 echo "disable_logging=false
@@ -30,8 +31,8 @@ do
     then
         echo "profile $(var.get profile) already here..."
     [[ "$(var.get no_animations)" == false ]] && sleep 0.1
-        source $(var.get profile).save
-        rm $(var.get profile).save
+        source "$(var.get profile).save"
+        rm "$(var.get profile).save"
     else
         var.set map map.1.1
         var.set inv ' wood_pickaxe '
@@ -42,7 +43,7 @@ do
         var.set gen_1_5_left_stone 3
         var.set gen_2_6_left_iron 6
     fi
-    touch $(var.get profile).save
+    touch "$(var.get profile).save"
     echo -n "
 # this is your gamesave.
 # please don't modify it, that's called cheating.
@@ -58,7 +59,7 @@ var.set gen_1_5_ticks $(var.get gen_1_5_ticks)
 var.set gen_1_5_left_stone $(var.get gen_1_5_left_stone)
 var.set gen_2_6_ticks $(var.get gen_2_6_ticks)
 var.set gen_2_6_left_iron $(var.get gen_2_6_left_iron)
-" >> $(var.get profile).save
+" >> "$(var.get profile).save"
     var.math profile profile++
 done
 cd ..
